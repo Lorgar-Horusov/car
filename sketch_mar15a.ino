@@ -7,7 +7,7 @@
 #define PIN_IN3 12 // Вывод управления направлением вращения мотора №2
 #define PIN_IN4 11 // Вывод управления направлением вращения мотора №2
 #define ALARM_PIN 2
-uint8_t power = 255; // Значение ШИМ (или скорости вращения)
+uint8_t power = 200; // 255 Значение ШИМ (или скорости вращения)
 
 int speed = 250;
 Ultrasonic ultrasonic(5, 6); // Trig - 12, Echo - 11
@@ -34,28 +34,28 @@ delay(100);
   analogWrite(PIN_ENA, speed); // Устанавливаем скорость 1-го мотора
   analogWrite(PIN_ENB, speed); // Устанавливаем скорость 2-го мотора
 
-  move_forvard(3000);
-  delay(1000);
+  move_forvard(1000);
+  delay(500);
 
-  turn_left(1000);
+  turn_left(500);
   delay(1000);
 
   move_forvard(2000);
   delay(1000);
 
-  turn_right(1000);
+  turn_right(500);
   delay(1000);
 
-  move_back(2000);
-  delay(10000);
-
-  turn_left(1000);
+  move_forvard(1000);
   delay(1000);
 
-  move_forvard(3000);
+  turn_right(500);
   delay(1000);
 
-  turn_right(3000);
+  move_forvard(1000);
+  delay(500);
+
+  turn_left(500);
   delay(1000);
 }
 
@@ -114,7 +114,11 @@ bool check_dist(){
 
 
 void turn_right(int time){
-    digitalWrite(PIN_IN3, LOW);
+  if (check_dist()){
+    alarm();
+    move_forvard(time);
+ }
+   digitalWrite(PIN_IN3, LOW);
     digitalWrite(PIN_IN4, HIGH);
     digitalWrite(PIN_IN1, HIGH);
     digitalWrite(PIN_IN2, LOW);
@@ -127,7 +131,11 @@ void turn_right(int time){
 
 
 void turn_left(int time){
-    digitalWrite(PIN_IN3, HIGH);
+  if (check_dist()){
+    alarm();
+    move_forvard(time);
+ }
+   digitalWrite(PIN_IN3, HIGH);
     digitalWrite(PIN_IN4, LOW);
     digitalWrite(PIN_IN1, LOW);
     digitalWrite(PIN_IN2, HIGH);
