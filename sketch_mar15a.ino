@@ -34,29 +34,30 @@ delay(100);
   analogWrite(PIN_ENA, speed); // Устанавливаем скорость 1-го мотора
   analogWrite(PIN_ENB, speed); // Устанавливаем скорость 2-го мотора
 
-  move_forvard(1000);
+  move_forvard(800);
   delay(500);
 
-  turn_left(500);
-  delay(1000);
-
-  move_forvard(2000);
-  delay(1000);
-
-  turn_right(500);
-  delay(1000);
-
-  move_forvard(1000);
-  delay(1000);
-
-  turn_right(500);
-  delay(1000);
-
-  move_forvard(1000);
+  turn_left(250);
   delay(500);
 
-  turn_left(500);
-  delay(1000);
+  move_forvard(500);
+  delay(500);
+
+  turn_left(250);
+  delay(500);
+
+  move_forvard(800);
+  delay(500);
+
+  turn_left(250);
+  delay(500);
+
+  move_forvard(500);
+  delay(500);
+
+  turn_left(250);
+  delay(10000);
+
 }
 
 
